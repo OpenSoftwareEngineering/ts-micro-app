@@ -9,6 +9,12 @@ variable "region" {
   default     = "us-central1"
 }
 
+variable "zones" {
+  type        = list(string)
+  description = "Zones of the new GKE cluster"
+  default     = ["us-central1-a", "us-central1-b", "us-central1-f"]
+}
+
 variable "network_name" {
   description = "The name of the network being created"
   type        = string
@@ -72,4 +78,35 @@ variable "mtu" {
   type        = number
   description = "The network MTU (If set to 0, meaning MTU is unset - defaults to '1460'). Recommended values: 1460 (default for historic reasons), 1500 (Internet default), or 8896 (for Jumbo packets). Allowed are all values in the range 1300 to 8896, inclusively."
   default     = 0
+}
+
+variable "cluster_name" {
+  type        = string
+  description = "Name of the new GKE cluster"
+  default     = "default-cluster-name"
+}
+
+variable "ip_range_pods" {
+  type        = string
+  description = "The _name_ of the secondary subnet ip range to use for pods"
+}
+
+variable "ip_range_services" {
+  type        = string
+  description = "The _name_ of the secondary subnet range to use for services"
+}
+
+variable "node_pools_names" {
+  type        = string
+  description = "The name of the node pool of GKE cluster"
+}
+
+variable "machine_type" {
+  type        = string
+  description = "The machine type in node pool"
+}
+
+variable "node_locations" {
+  type        = string
+  description = "GKE cluster node locations"
 }
